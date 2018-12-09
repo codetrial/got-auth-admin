@@ -99,6 +99,13 @@ export default {
   },
 
   chainWebpack: webpackPlugin,
+  proxy: {
+    '/api': {
+      target: 'http://localhost:7001/api/',
+      changeOrigin: true,
+      pathRewrite: { '^/api': '' },
+    },
+  },
   cssnano: {
     mergeRules: false,
   },

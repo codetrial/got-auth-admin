@@ -1,31 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'dva';
 import { formatMessage, FormattedMessage } from 'umi/locale';
-import {
-  Row,
-  Col,
-  Icon,
-  Card,
-  Tabs,
-  Table,
-  Radio,
-  DatePicker,
-  Tooltip,
-  Menu,
-  Dropdown,
-} from 'antd';
-import {
-  ChartCard,
-  MiniArea,
-  MiniBar,
-  MiniProgress,
-  Field,
-  Bar,
-  Pie,
-  TimelineChart,
-} from '@/components/Charts';
+import { Row, Col, Icon, Card, Tabs, DatePicker, Tooltip } from 'antd';
+import { ChartCard, MiniArea, MiniBar, MiniProgress, Field, Bar } from '@/components/Charts';
 import Trend from '@/components/Trend';
-import NumberInfo from '@/components/NumberInfo';
 import numeral from 'numeral';
 import GridContent from '@/components/PageHeaderWrapper/GridContent';
 import Yuan from '@/utils/Yuan';
@@ -61,8 +39,6 @@ class Analysis extends Component {
   }
 
   state = {
-    salesType: 'all',
-    currentTabKey: '',
     rangePickerValue: getTimeDistance('year'),
     loading: true,
   };
@@ -89,18 +65,6 @@ class Analysis extends Component {
     cancelAnimationFrame(this.reqRef);
     clearTimeout(this.timeoutId);
   }
-
-  handleChangeSalesType = e => {
-    this.setState({
-      salesType: e.target.value,
-    });
-  };
-
-  handleTabChange = key => {
-    this.setState({
-      currentTabKey: key,
-    });
-  };
 
   handleRangePickerChange = rangePickerValue => {
     const { dispatch } = this.props;
@@ -140,40 +104,10 @@ class Analysis extends Component {
   }
 
   render() {
-    const { rangePickerValue, salesType, loading: propsLoding, currentTabKey } = this.state;
+    const { rangePickerValue, loading: propsLoding } = this.state;
     const { chart, loading: stateLoading } = this.props;
-    const {
-      visitData,
-      visitData2,
-      salesData,
-      searchData,
-      offlineData,
-      offlineChartData,
-      salesTypeData,
-      salesTypeDataOnline,
-      salesTypeDataOffline,
-    } = chart;
+    const { visitData, salesData } = chart;
     const loading = propsLoding || stateLoading;
-    let salesPieData;
-    if (salesType === 'all') {
-      salesPieData = salesTypeData;
-    } else {
-      salesPieData = salesType === 'online' ? salesTypeDataOnline : salesTypeDataOffline;
-    }
-    const menu = (
-      <Menu>
-        <Menu.Item>操作一</Menu.Item>
-        <Menu.Item>操作二</Menu.Item>
-      </Menu>
-    );
-
-    const iconGroup = (
-      <span className={styles.iconGroup}>
-        <Dropdown overlay={menu} placement="bottomRight">
-          <Icon type="ellipsis" />
-        </Dropdown>
-      </span>
-    );
 
     const salesExtra = (
       <div className={styles.salesExtraWrap}>
@@ -197,78 +131,6 @@ class Analysis extends Component {
           style={{ width: 256 }}
         />
       </div>
-    );
-
-    const columns = [
-      {
-        title: <FormattedMessage id="app.analysis.table.rank" defaultMessage="Rank" />,
-        dataIndex: 'index',
-        key: 'index',
-      },
-      {
-        title: (
-          <FormattedMessage
-            id="app.analysis.table.search-keyword"
-            defaultMessage="Search keyword"
-          />
-        ),
-        dataIndex: 'keyword',
-        key: 'keyword',
-        render: text => <a href="/">{text}</a>,
-      },
-      {
-        title: <FormattedMessage id="app.analysis.table.users" defaultMessage="Users" />,
-        dataIndex: 'count',
-        key: 'count',
-        sorter: (a, b) => a.count - b.count,
-        className: styles.alignRight,
-      },
-      {
-        title: (
-          <FormattedMessage id="app.analysis.table.weekly-range" defaultMessage="Weekly Range" />
-        ),
-        dataIndex: 'range',
-        key: 'range',
-        sorter: (a, b) => a.range - b.range,
-        render: (text, record) => (
-          <Trend flag={record.status === 1 ? 'down' : 'up'}>
-            <span style={{ marginRight: 4 }}>{text}%</span>
-          </Trend>
-        ),
-        align: 'right',
-      },
-    ];
-
-    const activeKey = currentTabKey || (offlineData[0] && offlineData[0].name);
-
-    const CustomTab = ({ data, currentTabKey: currentKey }) => (
-      <Row gutter={8} style={{ width: 138, margin: '8px 0' }}>
-        <Col span={12}>
-          <NumberInfo
-            title={data.name}
-            subTitle={
-              <FormattedMessage
-                id="app.analysis.conversion-rate"
-                defaultMessage="Conversion Rate"
-              />
-            }
-            gap={2}
-            total={`${data.cvr * 100}%`}
-            theme={currentKey !== data.name && 'light'}
-          />
-        </Col>
-        <Col span={12} style={{ paddingTop: 36 }}>
-          <Pie
-            animate={false}
-            color={currentKey !== data.name && '#BDE4FF'}
-            inner={0.55}
-            tooltip={false}
-            margin={[0, 0, 0, 0]}
-            percent={data.cvr * 100}
-            height={64}
-          />
-        </Col>
-      </Row>
     );
 
     const topColResponsiveProps = {
@@ -521,167 +383,6 @@ class Analysis extends Component {
               </TabPane>
             </Tabs>
           </div>
-        </Card>
-
-        <Row gutter={24}>
-          <Col xl={12} lg={24} md={24} sm={24} xs={24}>
-            <Card
-              loading={loading}
-              bordered={false}
-              title={
-                <FormattedMessage
-                  id="app.analysis.online-top-search"
-                  defaultMessage="Online Top Search"
-                />
-              }
-              extra={iconGroup}
-              style={{ marginTop: 24 }}
-            >
-              <Row gutter={68}>
-                <Col sm={12} xs={24} style={{ marginBottom: 24 }}>
-                  <NumberInfo
-                    subTitle={
-                      <span>
-                        <FormattedMessage
-                          id="app.analysis.search-users"
-                          defaultMessage="search users"
-                        />
-                        <Tooltip
-                          title={
-                            <FormattedMessage
-                              id="app.analysis.introduce"
-                              defaultMessage="introduce"
-                            />
-                          }
-                        >
-                          <Icon style={{ marginLeft: 8 }} type="info-circle-o" />
-                        </Tooltip>
-                      </span>
-                    }
-                    gap={8}
-                    total={numeral(12321).format('0,0')}
-                    status="up"
-                    subTotal={17.1}
-                  />
-                  <MiniArea line height={45} data={visitData2} />
-                </Col>
-                <Col sm={12} xs={24} style={{ marginBottom: 24 }}>
-                  <NumberInfo
-                    subTitle={
-                      <span>
-                        <FormattedMessage
-                          id="app.analysis.per-capita-search"
-                          defaultMessage="Per Capita Search"
-                        />
-                        <Tooltip
-                          title={
-                            <FormattedMessage
-                              id="app.analysis.introduce"
-                              defaultMessage="introduce"
-                            />
-                          }
-                        >
-                          <Icon style={{ marginLeft: 8 }} type="info-circle-o" />
-                        </Tooltip>
-                      </span>
-                    }
-                    total={2.7}
-                    status="down"
-                    subTotal={26.2}
-                    gap={8}
-                  />
-                  <MiniArea line height={45} data={visitData2} />
-                </Col>
-              </Row>
-              <Table
-                rowKey={record => record.index}
-                size="small"
-                columns={columns}
-                dataSource={searchData}
-                pagination={{
-                  style: { marginBottom: 0 },
-                  pageSize: 5,
-                }}
-              />
-            </Card>
-          </Col>
-          <Col xl={12} lg={24} md={24} sm={24} xs={24}>
-            <Card
-              loading={loading}
-              className={styles.salesCard}
-              bordered={false}
-              title={
-                <FormattedMessage
-                  id="app.analysis.the-proportion-of-sales"
-                  defaultMessage="The Proportion of Sales"
-                />
-              }
-              bodyStyle={{ padding: 24 }}
-              extra={
-                <div className={styles.salesCardExtra}>
-                  {iconGroup}
-                  <div className={styles.salesTypeRadio}>
-                    <Radio.Group value={salesType} onChange={this.handleChangeSalesType}>
-                      <Radio.Button value="all">
-                        <FormattedMessage id="app.analysis.channel.all" defaultMessage="ALL" />
-                      </Radio.Button>
-                      <Radio.Button value="online">
-                        <FormattedMessage
-                          id="app.analysis.channel.online"
-                          defaultMessage="Online"
-                        />
-                      </Radio.Button>
-                      <Radio.Button value="stores">
-                        <FormattedMessage
-                          id="app.analysis.channel.stores"
-                          defaultMessage="Stores"
-                        />
-                      </Radio.Button>
-                    </Radio.Group>
-                  </div>
-                </div>
-              }
-              style={{ marginTop: 24, minHeight: 509 }}
-            >
-              <h4 style={{ marginTop: 8, marginBottom: 32 }}>
-                <FormattedMessage id="app.analysis.sales" defaultMessage="Sales" />
-              </h4>
-              <Pie
-                hasLegend
-                subTitle={<FormattedMessage id="app.analysis.sales" defaultMessage="Sales" />}
-                total={() => <Yuan>{salesPieData.reduce((pre, now) => now.y + pre, 0)}</Yuan>}
-                data={salesPieData}
-                valueFormat={value => <Yuan>{value}</Yuan>}
-                height={248}
-                lineWidth={4}
-              />
-            </Card>
-          </Col>
-        </Row>
-
-        <Card
-          loading={loading}
-          className={styles.offlineCard}
-          bordered={false}
-          bodyStyle={{ padding: '0 0 32px 0' }}
-          style={{ marginTop: 32 }}
-        >
-          <Tabs activeKey={activeKey} onChange={this.handleTabChange}>
-            {offlineData.map(shop => (
-              <TabPane tab={<CustomTab data={shop} currentTabKey={activeKey} />} key={shop.name}>
-                <div style={{ padding: '0 24px' }}>
-                  <TimelineChart
-                    height={400}
-                    data={offlineChartData}
-                    titleMap={{
-                      y1: formatMessage({ id: 'app.analysis.traffic' }),
-                      y2: formatMessage({ id: 'app.analysis.payments' }),
-                    }}
-                  />
-                </div>
-              </TabPane>
-            ))}
-          </Tabs>
         </Card>
       </GridContent>
     );

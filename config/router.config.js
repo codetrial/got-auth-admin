@@ -29,15 +29,17 @@ export default [
             name: 'analysis',
             component: './Dashboard/Analysis',
           },
+        ],
+      },
+      {
+        path: '/app',
+        name: 'app',
+        icon: 'crown',
+        routes: [
           {
-            path: '/dashboard/monitor',
-            name: 'monitor',
-            component: './Dashboard/Monitor',
-          },
-          {
-            path: '/dashboard/workplace',
-            name: 'workplace',
-            component: './Dashboard/Workplace',
+            path: '/app/list',
+            name: 'list',
+            component: './App/AppList',
           },
         ],
       },

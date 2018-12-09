@@ -71,6 +71,7 @@ class StandardTable extends PureComponent {
     } = this.props;
 
     const paginationProps = {
+      showTotal: (total, range) => `${range[0]}-${range[1]} of ${total} Total Items`,
       showSizeChanger: true,
       showQuickJumper: true,
       ...pagination,
