@@ -41,6 +41,18 @@ export default [
             name: 'list',
             component: './App/AppList',
           },
+          {
+            path: '/app/new',
+            name: 'new',
+            hideInMenu: true,
+            component: './App/AppForm',
+          },
+          {
+            path: '/app/:id',
+            name: 'edit',
+            hideInMenu: true,
+            component: './App/AppForm',
+          },
         ],
       },
       // forms

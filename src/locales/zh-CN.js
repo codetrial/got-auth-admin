@@ -104,6 +104,8 @@ export default {
   'menu.account.logout': '退出登录',
 
   'menu.app': '应用方',
+  'menu.app.new': '新建应用方',
+  'menu.app.edit': '修改应用方',
   'menu.app.list': '应用方列表',
 
   'app.login.message-invalid-credentials': '账户或密码错误（admin/888888）',

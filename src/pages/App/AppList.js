@@ -1,6 +1,7 @@
 import React, { PureComponent, Fragment } from 'react';
+import Link from 'umi/link';
 import { connect } from 'dva';
-import { Card, Form, Input, Button, Row, Col } from 'antd';
+import { Card, Form, Input, Button, Row, Col, Divider } from 'antd';
 import StandardTable from '@/components/StandardTable';
 import StandardQueryList from '@/components/StandardQueryList';
 import PageHeaderWrapper from '@/components/PageHeaderWrapper';
@@ -39,6 +40,8 @@ class AppList extends PureComponent {
       title: '操作',
       render: (text, row) => (
         <Fragment>
+          <Link to={`/app/${row.id}`}>修改</Link>
+          <Divider type="vertical" />
           <a onClick={() => this.handleDeleteApp(true, row)}>删除</a>
         </Fragment>
       ),
@@ -142,7 +145,7 @@ class AppList extends PureComponent {
 
   render() {
     const {
-      app: { data },
+      app: { appList },
       loading,
     } = this.props;
     const { selectedRows } = this.state;
@@ -150,16 +153,18 @@ class AppList extends PureComponent {
     return (
       <PageHeaderWrapper
         title="应用方列表"
-        content="使用鉴权系统的相关系统，所有的资源、角色和分组都必须属于某个应用方。"
+        content="使用鉴权服务的相关系统，所有的资源、角色和分组都必须属于某个应用方。"
       >
         <Card bordered={false}>
           <StandardQueryList
             form={this.renderQueryForm()}
             leftOperators={
               <Fragment>
-                <Button icon="plus" type="primary">
-                  新建
-                </Button>
+                <Link to="/app/new">
+                  <Button icon="plus" type="primary">
+                    新建
+                  </Button>
+                </Link>
                 {selectedRows.length > 0 && (
                   <span>
                     <Button>批量删除</Button>
@@ -181,7 +186,7 @@ class AppList extends PureComponent {
               <StandardTable
                 selectedRows={selectedRows}
                 loading={loading}
-                data={data}
+                data={appList}
                 rowKey="id"
                 columns={this.columns}
                 onSelectRow={rows => this.handleSelectRows(rows)}

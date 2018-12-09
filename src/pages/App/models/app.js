@@ -1,32 +1,64 @@
-import { searchApp } from '@/services/app';
+import { routerRedux } from 'dva/router';
+import { message } from 'antd';
+import { searchApp, getApp, saveApp } from '@/services/app';
 
 export default {
   namespace: 'app',
 
   state: {
-    data: [
-      {
-        list: [],
-        pagination: {},
-      },
-    ],
+    appEntity: {},
+    appList: {
+      list: [],
+      pagination: {},
+    },
   },
 
   effects: {
+    *getApplication({ payload }, { call, put }) {
+      try {
+        const response = yield call(getApp, payload);
+        yield put({
+          type: 'updateEntity',
+          payload: response.data,
+        });
+      } catch (err) {
+        message.error('获取详情失败');
+      }
+    },
+    *saveApplication({ payload }, { call, put }) {
+      try {
+        yield call(saveApp, payload);
+
+        message.success('保存成功');
+        yield put(routerRedux.push('/app/list'));
+      } catch (err) {
+        message.error('保存失败');
+      }
+    },
     *search({ payload }, { call, put }) {
-      const response = yield call(searchApp, payload);
-      yield put({
-        type: 'save',
-        payload: response,
-      });
+      try {
+        const response = yield call(searchApp, payload);
+        yield put({
+          type: 'updateList',
+          payload: response.data,
+        });
+      } catch (err) {
+        message.error('加载列表失败');
+      }
     },
   },
 
   reducers: {
-    save(state, action) {
+    updateEntity(state, action) {
       return {
         ...state,
-        data: action.payload.data,
+        appEntity: action.payload,
+      };
+    },
+    updateList(state, action) {
+      return {
+        ...state,
+        appList: action.payload,
       };
     },
   },

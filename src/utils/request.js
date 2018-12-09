@@ -3,6 +3,7 @@ import { notification } from 'antd';
 import router from 'umi/router';
 import hash from 'hash.js';
 import { isAntdPro } from './utils';
+import { isNotOK } from './request.check';
 
 const codeMessage = {
   200: '服务器成功返回请求的数据。',
@@ -35,6 +36,16 @@ const checkStatus = response => {
   error.name = response.status;
   error.response = response;
   throw error;
+};
+
+const checkJSONStatus = response => {
+  if (response && response.status) {
+    const { status, message } = response;
+    if (isNotOK(status)) {
+      throw new Error(`Exception: ${status} ${message}`);
+    }
+  }
+  return response;
 };
 
 const cachedSave = (response, hashcode) => {
@@ -129,6 +140,7 @@ export default function request(url, option) {
       }
       return response.json();
     })
+    .then(checkJSONStatus)
     .catch(e => {
       const status = e.name;
       if (status === 401) {
@@ -150,6 +162,9 @@ export default function request(url, option) {
       }
       if (status >= 404 && status < 422) {
         router.push('/exception/404');
+        return;
       }
+
+      throw e;
     });
 }
