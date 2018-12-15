@@ -1,5 +1,5 @@
 import React, { PureComponent, Fragment } from 'react';
-import { Table, Alert } from 'antd';
+import { Table, Alert, Icon } from 'antd';
 import styles from './index.less';
 
 function initTotalList(columns) {
@@ -85,6 +85,8 @@ class StandardTable extends PureComponent {
       }),
     };
 
+    const loadingIcon = <Icon type="loading" spin />;
+
     return (
       <div className={styles.standardTable}>
         <div className={styles.tableAlert}>
@@ -111,7 +113,10 @@ class StandardTable extends PureComponent {
           />
         </div>
         <Table
-          loading={loading}
+          loading={{
+            indicator: loadingIcon,
+            spinning: loading,
+          }}
           rowKey={rowKey || 'key'}
           rowSelection={rowSelection}
           dataSource={list}
