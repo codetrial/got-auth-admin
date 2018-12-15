@@ -8,6 +8,7 @@ export default {
     email: 'felixpy.1993@gmail.com',
     signature: 'Try it yourself.',
     title: 'Software Engineer',
+    profile: 'Winter is coming',
     group: 'Codetrial',
     tags: [
       {
@@ -15,7 +16,7 @@ export default {
         label: 'Professional',
       },
     ],
-    notifyCount: 12,
+    notifyCount: 3,
     country: 'China',
     geographic: {
       province: {

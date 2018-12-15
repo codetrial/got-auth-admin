@@ -235,10 +235,6 @@ export default [
                 path: '/account/center/applications',
                 component: './Account/Center/Applications',
               },
-              {
-                path: '/account/center/projects',
-                component: './Account/Center/Projects',
-              },
             ],
           },
           {

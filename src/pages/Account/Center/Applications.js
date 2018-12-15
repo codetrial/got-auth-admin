@@ -16,18 +16,8 @@ class Center extends PureComponent {
     const itemMenu = (
       <Menu>
         <Menu.Item>
-          <a target="_blank" rel="noopener noreferrer" href="http://www.alipay.com/">
-            1st menu item
-          </a>
-        </Menu.Item>
-        <Menu.Item>
-          <a target="_blank" rel="noopener noreferrer" href="http://www.taobao.com/">
-            2nd menu item
-          </a>
-        </Menu.Item>
-        <Menu.Item>
-          <a target="_blank" rel="noopener noreferrer" href="http://www.tmall.com/">
-            3d menu item
+          <a target="_blank" rel="noopener noreferrer" href="https://codetrial.github.io/">
+            查看
           </a>
         </Menu.Item>
       </Menu>
@@ -35,11 +25,11 @@ class Center extends PureComponent {
     const CardInfo = ({ activeUser, newUser }) => (
       <div className={stylesApplications.cardInfo}>
         <div>
-          <p>活跃用户</p>
+          <p>活跃读者</p>
           <p>{activeUser}</p>
         </div>
         <div>
-          <p>新增用户</p>
+          <p>新增读者</p>
           <p>{newUser}</p>
         </div>
       </div>

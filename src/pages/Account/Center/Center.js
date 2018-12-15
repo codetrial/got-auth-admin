@@ -28,7 +28,7 @@ class Center extends PureComponent {
     dispatch({
       type: 'list/fetch',
       payload: {
-        count: 8,
+        count: 3,
       },
     });
     dispatch({
@@ -44,9 +44,6 @@ class Center extends PureComponent {
         break;
       case 'applications':
         router.push(`${match.url}/applications`);
-        break;
-      case 'projects':
-        router.push(`${match.url}/projects`);
         break;
       default:
         break;
@@ -97,7 +94,7 @@ class Center extends PureComponent {
         key: 'articles',
         tab: (
           <span>
-            文章 <span style={{ fontSize: 14 }}>(8)</span>
+            文章 <span style={{ fontSize: 14 }}>(3)</span>
           </span>
         ),
       },
@@ -105,15 +102,7 @@ class Center extends PureComponent {
         key: 'applications',
         tab: (
           <span>
-            应用 <span style={{ fontSize: 14 }}>(8)</span>
-          </span>
-        ),
-      },
-      {
-        key: 'projects',
-        tab: (
-          <span>
-            项目 <span style={{ fontSize: 14 }}>(8)</span>
+            应用 <span style={{ fontSize: 14 }}>(3)</span>
           </span>
         ),
       },
