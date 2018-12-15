@@ -178,13 +178,13 @@ class BasicLayout extends React.PureComponent {
     const currRouterData = this.matchParamsPath(pathname);
 
     if (!currRouterData) {
-      return 'Got Auth Admin';
+      return 'GOT Auth Admin';
     }
     const message = formatMessage({
       id: currRouterData.locale || currRouterData.name,
       defaultMessage: currRouterData.name,
     });
-    return `${message} - Got Auth Admin`;
+    return `${message} - GOT Auth Admin`;
   };
 
   getLayoutStyle = () => {

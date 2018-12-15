@@ -28,7 +28,7 @@ const FooterView = () => (
       ]}
       copyright={
         <Fragment>
-          Copyright <Icon type="copyright" /> 2018 Felix Yang All Rights Reserved
+          Copyright <Icon type="copyright" /> 2018 GOT Auth Admin All Rights Reserved
         </Fragment>
       }
     />
