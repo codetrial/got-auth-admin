@@ -26,18 +26,6 @@ export default class SelectLang extends PureComponent {
           </span>{' '}
           繁体中文
         </Menu.Item>
-        <Menu.Item key="en-US">
-          <span role="img" aria-label="English">
-            🇬🇧
-          </span>{' '}
-          English
-        </Menu.Item>
-        <Menu.Item key="pt-BR">
-          <span role="img" aria-label="Português">
-            🇵🇹
-          </span>{' '}
-          Português
-        </Menu.Item>
       </Menu>
     );
     return (

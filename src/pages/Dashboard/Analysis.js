@@ -24,7 +24,7 @@ class Analysis extends Component {
     this.rankingListData = [];
     for (let i = 0; i < 7; i += 1) {
       this.rankingListData.push({
-        title: formatMessage({ id: 'app.analysis.test' }, { no: i }),
+        title: formatMessage({ id: 'app.analysis.app-name' }, { no: i }),
         total: 1000 * (10 - i),
       });
     }

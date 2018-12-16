@@ -126,7 +126,7 @@ export default {
   'app.register-result.back-home': '返回首页',
   'app.register-result.view-mailbox': '查看邮箱',
   'app.home.introduce': '介绍',
-  'app.analysis.test': '应用方 {no} ',
+  'app.analysis.app-name': '应用方 {no} ',
   'app.analysis.introduce': '指标说明',
   'app.analysis.total-sales': '总销售额',
   'app.analysis.day-sales': '日销售额',

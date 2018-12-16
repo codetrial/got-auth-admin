@@ -102,6 +102,12 @@ export default {
   'menu.account.settings': '個人設置',
   'menu.account.trigger': '觸發報錯',
   'menu.account.logout': '退出登錄',
+
+  'menu.app': '應用方',
+  'menu.app.new': '新建應用方',
+  'menu.app.edit': '修改應用方',
+  'menu.app.list': '應用方列表',
+
   'app.login.message-invalid-credentials': '賬戶或密碼錯誤（admin/888888）',
   'app.login.message-invalid-verification-code': '驗證碼錯誤',
   'app.login.tab-login-credentials': '賬戶密碼登錄',
@@ -120,7 +126,7 @@ export default {
   'app.register-result.back-home': '返回首頁',
   'app.register-result.view-mailbox': '查看郵箱',
   'app.home.introduce': '介紹',
-  'app.analysis.test': '應用方 {no}',
+  'app.analysis.app-name': '應用方 {no}',
   'app.analysis.introduce': '指標說明',
   'app.analysis.total-sales': '總銷售額',
   'app.analysis.day-sales': '日銷售額',
