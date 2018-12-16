@@ -6,7 +6,7 @@ title: 饼状图
 ```jsx
 import { Pie, yuan } from 'ant-design-pro/lib/Charts';
 
-const salesPieData = [
+const authorizePieData = [
   {
     x: '家用电器',
     y: 4544,
@@ -41,11 +41,11 @@ ReactDOM.render(
     total={() => (
       <span
         dangerouslySetInnerHTML={{
-          __html: yuan(salesPieData.reduce((pre, now) => now.y + pre, 0))
+          __html: yuan(authorizePieData.reduce((pre, now) => now.y + pre, 0))
         }}
       />
     )}
-    data={salesPieData}
+    data={authorizePieData}
     valueFormat={val => <span dangerouslySetInnerHTML={{ __html: yuan(val) }} />}
     height={294}
   />,

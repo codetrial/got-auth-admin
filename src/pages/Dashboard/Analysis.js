@@ -2,11 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'dva';
 import { formatMessage, FormattedMessage } from 'umi/locale';
 import { Row, Col, Icon, Card, Tabs, DatePicker, Tooltip } from 'antd';
-import { ChartCard, MiniArea, MiniBar, MiniProgress, Field, Bar } from '@/components/Charts';
+import { ChartCard, MiniArea, MiniBar, Field, Bar } from '@/components/Charts';
 import Trend from '@/components/Trend';
 import numeral from 'numeral';
 import GridContent from '@/components/PageHeaderWrapper/GridContent';
-import Yuan from '@/utils/Yuan';
 import { getTimeDistance } from '@/utils/utils';
 
 import styles from './Analysis.less';
@@ -65,7 +64,7 @@ class Analysis extends Component {
     });
 
     dispatch({
-      type: 'chart/fetchSalesData',
+      type: 'chart/fetchAuthorizeData',
     });
   };
 
@@ -76,7 +75,7 @@ class Analysis extends Component {
     });
 
     dispatch({
-      type: 'chart/fetchSalesData',
+      type: 'chart/fetchAuthorizeData',
     });
   };
 
@@ -98,12 +97,12 @@ class Analysis extends Component {
   render() {
     const { rangePickerValue, loading: propsLoding } = this.state;
     const { chart, loading: stateLoading } = this.props;
-    const { visitData, salesData } = chart;
+    const { visitData, resourceData, authorizeData } = chart;
     const loading = propsLoding || stateLoading;
 
-    const salesExtra = (
-      <div className={styles.salesExtraWrap}>
-        <div className={styles.salesExtra}>
+    const authorizeExtra = (
+      <div className={styles.authorizeExtraWrap}>
+        <div className={styles.authorizeExtra}>
           <a className={this.isActive('today')} onClick={() => this.selectDate('today')}>
             <FormattedMessage id="app.analysis.all-day" defaultMessage="All Day" />
           </a>
@@ -130,7 +129,7 @@ class Analysis extends Component {
       sm: 12,
       md: 12,
       lg: 12,
-      xl: 6,
+      xl: 8,
       style: { marginBottom: 24 },
     };
 
@@ -141,7 +140,10 @@ class Analysis extends Component {
             <ChartCard
               bordered={false}
               title={
-                <FormattedMessage id="app.analysis.total-sales" defaultMessage="Total Sales" />
+                <FormattedMessage
+                  id="app.analysis.total-authorize"
+                  defaultMessage="Total Authorize"
+                />
               }
               action={
                 <Tooltip
@@ -153,24 +155,27 @@ class Analysis extends Component {
                 </Tooltip>
               }
               loading={loading}
-              total={() => <Yuan>126560</Yuan>}
+              total={23520}
               footer={
                 <Field
                   label={
-                    <FormattedMessage id="app.analysis.day-sales" defaultMessage="Day Sales" />
+                    <FormattedMessage
+                      id="app.analysis.day-authorize"
+                      defaultMessage="Day Authorize"
+                    />
                   }
-                  value={`￥${numeral(12423).format('0,0')}`}
+                  value={`${numeral(7855).format('0,0')}`}
                 />
               }
               contentHeight={46}
             >
               <Trend flag="up" style={{ marginRight: 16 }}>
                 <FormattedMessage id="app.analysis.week" defaultMessage="Weekly Changes" />
-                <span className={styles.trendText}>12%</span>
+                <span className={styles.trendText}>18%</span>
               </Trend>
               <Trend flag="down">
                 <FormattedMessage id="app.analysis.day" defaultMessage="Daily Changes" />
-                <span className={styles.trendText}>11%</span>
+                <span className={styles.trendText}>5%</span>
               </Trend>
             </ChartCard>
           </Col>
@@ -188,13 +193,13 @@ class Analysis extends Component {
                   <Icon type="info-circle-o" />
                 </Tooltip>
               }
-              total={numeral(8846).format('0,0')}
+              total={numeral(129708).format('0,0')}
               footer={
                 <Field
                   label={
                     <FormattedMessage id="app.analysis.day-visits" defaultMessage="Day Visits" />
                   }
-                  value={numeral(1234).format('0,0')}
+                  value={numeral(27310).format('0,0')}
                 />
               }
               contentHeight={46}
@@ -206,7 +211,7 @@ class Analysis extends Component {
             <ChartCard
               bordered={false}
               loading={loading}
-              title={<FormattedMessage id="app.analysis.payments" defaultMessage="Payments" />}
+              title={<FormattedMessage id="app.analysis.resources" defaultMessage="Resources" />}
               action={
                 <Tooltip
                   title={
@@ -216,90 +221,57 @@ class Analysis extends Component {
                   <Icon type="info-circle-o" />
                 </Tooltip>
               }
-              total={numeral(6560).format('0,0')}
+              total={numeral(5655).format('0,0')}
               footer={
                 <Field
                   label={
                     <FormattedMessage
-                      id="app.analysis.conversion-rate"
-                      defaultMessage="Conversion Rate"
+                      id="app.analysis.day-resource"
+                      defaultMessage="Day Resource"
                     />
                   }
-                  value="60%"
+                  value="258"
                 />
               }
               contentHeight={46}
             >
-              <MiniBar data={visitData} />
-            </ChartCard>
-          </Col>
-          <Col {...topColResponsiveProps}>
-            <ChartCard
-              loading={loading}
-              bordered={false}
-              title={
-                <FormattedMessage
-                  id="app.analysis.operational-effect"
-                  defaultMessage="Operational Effect"
-                />
-              }
-              action={
-                <Tooltip
-                  title={
-                    <FormattedMessage id="app.analysis.introduce" defaultMessage="introduce" />
-                  }
-                >
-                  <Icon type="info-circle-o" />
-                </Tooltip>
-              }
-              total="78%"
-              footer={
-                <div style={{ whiteSpace: 'nowrap', overflow: 'hidden' }}>
-                  <Trend flag="up" style={{ marginRight: 16 }}>
-                    <FormattedMessage id="app.analysis.week" defaultMessage="Weekly changes" />
-                    <span className={styles.trendText}>12%</span>
-                  </Trend>
-                  <Trend flag="down">
-                    <FormattedMessage id="app.analysis.day" defaultMessage="Weekly changes" />
-                    <span className={styles.trendText}>11%</span>
-                  </Trend>
-                </div>
-              }
-              contentHeight={46}
-            >
-              <MiniProgress percent={78} strokeWidth={8} target={80} color="#13C2C2" />
+              <MiniBar data={resourceData} />
             </ChartCard>
           </Col>
         </Row>
 
         <Card loading={loading} bordered={false} bodyStyle={{ padding: 0 }}>
-          <div className={styles.salesCard}>
-            <Tabs tabBarExtraContent={salesExtra} size="large" tabBarStyle={{ marginBottom: 24 }}>
+          <div className={styles.authorizeCard}>
+            <Tabs
+              tabBarExtraContent={authorizeExtra}
+              size="large"
+              tabBarStyle={{ marginBottom: 24 }}
+            >
               <TabPane
-                tab={<FormattedMessage id="app.analysis.visits" defaultMessage="Visits" />}
+                tab={<FormattedMessage id="app.analysis.authorize" defaultMessage="Authorize" />}
                 key="views"
               >
                 <Row>
                   <Col xl={16} lg={12} md={12} sm={24} xs={24}>
-                    <div className={styles.salesBar}>
+                    <div className={styles.authorizeBar}>
                       <Bar
                         height={292}
                         title={
                           <FormattedMessage
-                            id="app.analysis.visits-trend"
-                            defaultMessage="Visits Trend"
+                            id="app.analysis.authorize-trend"
+                            defaultMessage="Authorize Trend"
                           />
                         }
-                        data={salesData}
+                        data={authorizeData}
                       />
                     </div>
                   </Col>
                   <Col xl={8} lg={12} md={12} sm={24} xs={24}>
-                    <div className={styles.salesRank}>
+                    <div className={styles.authorizeRank}>
                       <h4 className={styles.rankingTitle}>
                         <FormattedMessage
-                          id="app.analysis.visits-ranking"
-                          defaultMessage="Visits Ranking"
+                          id="app.analysis.authorize-ranking"
+                          defaultMessage="Authorize Ranking"
                         />
                       </h4>
                       <ul className={styles.rankingList}>

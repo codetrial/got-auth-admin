@@ -5,15 +5,8 @@ export default {
 
   state: {
     visitData: [],
-    visitData2: [],
-    salesData: [],
-    searchData: [],
-    offlineData: [],
-    offlineChartData: [],
-    salesTypeData: [],
-    salesTypeDataOnline: [],
-    salesTypeDataOffline: [],
-    radarData: [],
+    resourceData: [],
+    authorizeData: [],
     loading: false,
   },
 
@@ -25,12 +18,12 @@ export default {
         payload: response,
       });
     },
-    *fetchSalesData(_, { call, put }) {
+    *fetchAuthorizeData(_, { call, put }) {
       const response = yield call(fakeChartData);
       yield put({
         type: 'save',
         payload: {
-          salesData: response.salesData,
+          authorizeData: response.authorizeData,
         },
       });
     },
@@ -46,15 +39,8 @@ export default {
     clear() {
       return {
         visitData: [],
-        visitData2: [],
-        salesData: [],
-        searchData: [],
-        offlineData: [],
-        offlineChartData: [],
-        salesTypeData: [],
-        salesTypeDataOnline: [],
-        salesTypeDataOffline: [],
-        radarData: [],
+        resourceData: [],
+        authorizeData: [],
       };
     },
   },
