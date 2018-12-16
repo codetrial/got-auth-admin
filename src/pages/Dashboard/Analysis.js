@@ -14,14 +14,6 @@ import styles from './Analysis.less';
 const { TabPane } = Tabs;
 const { RangePicker } = DatePicker;
 
-const rankingListData = [];
-for (let i = 0; i < 7; i += 1) {
-  rankingListData.push({
-    title: `工专路 ${i} 号店`,
-    total: 323234,
-  });
-}
-
 @connect(({ chart, loading }) => ({
   chart,
   loading: loading.effects['chart/fetch'],
@@ -33,7 +25,7 @@ class Analysis extends Component {
     for (let i = 0; i < 7; i += 1) {
       this.rankingListData.push({
         title: formatMessage({ id: 'app.analysis.test' }, { no: i }),
-        total: 323234,
+        total: 1000 * (10 - i),
       });
     }
   }
@@ -283,56 +275,6 @@ class Analysis extends Component {
         <Card loading={loading} bordered={false} bodyStyle={{ padding: 0 }}>
           <div className={styles.salesCard}>
             <Tabs tabBarExtraContent={salesExtra} size="large" tabBarStyle={{ marginBottom: 24 }}>
-              <TabPane
-                tab={<FormattedMessage id="app.analysis.sales" defaultMessage="Sales" />}
-                key="sales"
-              >
-                <Row>
-                  <Col xl={16} lg={12} md={12} sm={24} xs={24}>
-                    <div className={styles.salesBar}>
-                      <Bar
-                        height={295}
-                        title={
-                          <FormattedMessage
-                            id="app.analysis.sales-trend"
-                            defaultMessage="Sales Trend"
-                          />
-                        }
-                        data={salesData}
-                      />
-                    </div>
-                  </Col>
-                  <Col xl={8} lg={12} md={12} sm={24} xs={24}>
-                    <div className={styles.salesRank}>
-                      <h4 className={styles.rankingTitle}>
-                        <FormattedMessage
-                          id="app.analysis.sales-ranking"
-                          defaultMessage="Sales Ranking"
-                        />
-                      </h4>
-                      <ul className={styles.rankingList}>
-                        {this.rankingListData.map((item, i) => (
-                          <li key={item.title}>
-                            <span
-                              className={`${styles.rankingItemNumber} ${
-                                i < 3 ? styles.active : ''
-                              }`}
-                            >
-                              {i + 1}
-                            </span>
-                            <span className={styles.rankingItemTitle} title={item.title}>
-                              {item.title}
-                            </span>
-                            <span className={styles.rankingItemValue}>
-                              {numeral(item.total).format('0,0')}
-                            </span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </Col>
-                </Row>
-              </TabPane>
               <TabPane
                 tab={<FormattedMessage id="app.analysis.visits" defaultMessage="Visits" />}
                 key="views"
