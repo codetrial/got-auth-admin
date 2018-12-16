@@ -45,7 +45,7 @@ const authorizeData = [];
 for (let i = 0; i < 12; i += 1) {
   authorizeData.push({
     x: `${i + 1}月`,
-    y: Math.floor(Math.random() * 1000) + 200,
+    y: Math.floor(Math.random() * 200000) + 10000,
   });
 }
 
