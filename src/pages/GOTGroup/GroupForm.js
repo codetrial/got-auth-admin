@@ -12,7 +12,7 @@ const FormItem = Form.Item;
   submitting: loading.effects['gotGroup/saveGroup'],
 }))
 @Form.create()
-class ResourceForm extends PureComponent {
+class GroupForm extends PureComponent {
   state = {
     isNew: true,
   };
@@ -129,4 +129,4 @@ class ResourceForm extends PureComponent {
   }
 }
 
-export default ResourceForm;
+export default GroupForm;

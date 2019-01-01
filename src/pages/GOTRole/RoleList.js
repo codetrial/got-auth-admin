@@ -7,7 +7,7 @@ import StandardQueryList from '@/components/StandardQueryList';
 import PageHeaderWrapper from '@/components/PageHeaderWrapper';
 import { formatFormValues, serializeSearchParam } from '@/utils/search';
 
-// import styles from './ResourceList.less';
+// import styles from './RoleList.less';
 
 const FormItem = Form.Item;
 
@@ -16,7 +16,7 @@ const FormItem = Form.Item;
   loading: loading.models.gotRole,
 }))
 @Form.create()
-class ResourceList extends PureComponent {
+class RoleList extends PureComponent {
   state = {
     selectedRows: [],
     formValues: {},
@@ -46,7 +46,7 @@ class ResourceList extends PureComponent {
         <Fragment>
           <Link to={`/got-role/${row.id}`}>修改</Link>
           <Divider type="vertical" />
-          <a onClick={() => this.handleDeleteResource(true, row)}>删除</a>
+          <a onClick={() => this.handleDeleteRole(true, row)}>删除</a>
         </Fragment>
       ),
     },
@@ -60,7 +60,7 @@ class ResourceList extends PureComponent {
     });
   }
 
-  handleDeleteResource() {
+  handleDeleteRole() {
     const { dispatch } = this.props;
 
     dispatch({
@@ -204,4 +204,4 @@ class ResourceList extends PureComponent {
   }
 }
 
-export default ResourceList;
+export default RoleList;

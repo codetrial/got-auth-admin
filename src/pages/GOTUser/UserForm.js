@@ -12,7 +12,7 @@ const FormItem = Form.Item;
   submitting: loading.effects['gotUser/saveUser'],
 }))
 @Form.create()
-class ResourceForm extends PureComponent {
+class UserForm extends PureComponent {
   state = {
     isNew: true,
   };
@@ -118,4 +118,4 @@ class ResourceForm extends PureComponent {
   }
 }
 
-export default ResourceForm;
+export default UserForm;
