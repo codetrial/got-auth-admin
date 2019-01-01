@@ -103,10 +103,30 @@ export default {
   'menu.account.trigger': '触发报错',
   'menu.account.logout': '退出登录',
 
-  'menu.app': '应用方',
-  'menu.app.new': '新建应用方',
-  'menu.app.edit': '修改应用方',
-  'menu.app.list': '应用方列表',
+  'menu.got-app': '应用方',
+  'menu.got-app.new': '新建应用方',
+  'menu.got-app.edit': '修改应用方',
+  'menu.got-app.list': '应用方列表',
+
+  'menu.got-resource': '权限资源',
+  'menu.got-resource.new': '新建资源',
+  'menu.got-resource.edit': '修改资源',
+  'menu.got-resource.list': '资源列表',
+
+  'menu.got-role': '权限角色',
+  'menu.got-role.new': '新建角色',
+  'menu.got-role.edit': '修改角色',
+  'menu.got-role.list': '角色列表',
+
+  'menu.got-group': '权限分组',
+  'menu.got-group.new': '新建分组',
+  'menu.got-group.edit': '修改分组',
+  'menu.got-group.list': '分组列表',
+
+  'menu.got-user': '权限用户',
+  'menu.got-user.new': '新建用户',
+  'menu.got-user.edit': '修改用户',
+  'menu.got-user.list': '用户列表',
 
   'app.login.message-invalid-credentials': '账户或密码错误（admin/888888）',
   'app.login.message-invalid-verification-code': '验证码错误',

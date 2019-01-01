@@ -1,22 +1,22 @@
 import { routerRedux } from 'dva/router';
 import { message } from 'antd';
-import { searchApp, getApp, saveApp } from '@/services/app';
+import { searchResource, getResource, saveResource } from '@/services/gotResource';
 
 export default {
-  namespace: 'app',
+  namespace: 'gotResource',
 
   state: {
-    appEntity: {},
-    appList: {
+    resourceEntity: {},
+    resourceList: {
       list: [],
       pagination: {},
     },
   },
 
   effects: {
-    *getApplication({ payload }, { call, put }) {
+    *getResource({ payload }, { call, put }) {
       try {
-        const response = yield call(getApp, payload);
+        const response = yield call(getResource, payload);
         yield put({
           type: 'updateEntity',
           payload: response.data,
@@ -25,19 +25,19 @@ export default {
         message.error('获取详情失败');
       }
     },
-    *saveApplication({ payload }, { call, put }) {
+    *saveResource({ payload }, { call, put }) {
       try {
-        yield call(saveApp, payload);
+        yield call(saveResource, payload);
 
         message.success('保存成功');
-        yield put(routerRedux.push('/app/list'));
+        yield put(routerRedux.push('/got-resource/list'));
       } catch (err) {
         message.error('保存失败');
       }
     },
     *search({ payload }, { call, put }) {
       try {
-        const response = yield call(searchApp, payload);
+        const response = yield call(searchResource, payload);
         yield put({
           type: 'updateList',
           payload: response.data,
@@ -52,13 +52,13 @@ export default {
     updateEntity(state, action) {
       return {
         ...state,
-        appEntity: action.payload,
+        resourceEntity: action.payload,
       };
     },
     updateList(state, action) {
       return {
         ...state,
-        appList: action.payload,
+        resourceList: action.payload,
       };
     },
   },

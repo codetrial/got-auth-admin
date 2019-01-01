@@ -7,9 +7,9 @@ import { formItemLayout, formSubmitLayout } from '@/constants/layout.form';
 
 const FormItem = Form.Item;
 
-@connect(({ app, loading }) => ({
-  app,
-  submitting: loading.effects['app/saveApplication'],
+@connect(({ gotApp, loading }) => ({
+  app: gotApp,
+  submitting: loading.effects['gotApp/saveApplication'],
 }))
 @Form.create()
 class AppForm extends PureComponent {
@@ -31,7 +31,7 @@ class AppForm extends PureComponent {
     const { dispatch } = this.props;
 
     dispatch({
-      type: 'app/updateEntity',
+      type: 'gotApp/updateEntity',
       payload: {},
     });
 
@@ -40,7 +40,7 @@ class AppForm extends PureComponent {
     }
 
     dispatch({
-      type: 'app/getApplication',
+      type: 'gotApp/getApplication',
       payload: id,
     });
   }
@@ -51,7 +51,7 @@ class AppForm extends PureComponent {
     form.validateFieldsAndScroll((err, values) => {
       if (!err) {
         dispatch({
-          type: 'app/saveApplication',
+          type: 'gotApp/saveApplication',
           payload: {
             id,
             ...values,

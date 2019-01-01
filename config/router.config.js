@@ -32,26 +32,122 @@ export default [
         ],
       },
       {
-        path: '/app',
-        name: 'app',
+        path: '/got-app',
+        name: 'got-app',
         icon: 'crown',
         routes: [
           {
-            path: '/app/list',
+            path: '/got-app/list',
             name: 'list',
-            component: './App/AppList',
+            component: './GOTApp/AppList',
           },
           {
-            path: '/app/new',
+            path: '/got-app/new',
             name: 'new',
             hideInMenu: true,
-            component: './App/AppForm',
+            component: './GOTApp/AppForm',
           },
           {
-            path: '/app/:id',
+            path: '/got-app/:id',
             name: 'edit',
             hideInMenu: true,
-            component: './App/AppForm',
+            component: './GOTApp/AppForm',
+          },
+        ],
+      },
+      {
+        path: '/got-resource',
+        name: 'got-resource',
+        icon: 'compass',
+        routes: [
+          {
+            path: '/got-resource/list',
+            name: 'list',
+            component: './GOTResource/ResourceList',
+          },
+          {
+            path: '/got-resource/new',
+            name: 'new',
+            hideInMenu: true,
+            component: './GOTResource/ResourceForm',
+          },
+          {
+            path: '/got-resource/:id',
+            name: 'edit',
+            hideInMenu: true,
+            component: './GOTResource/ResourceForm',
+          },
+        ],
+      },
+      {
+        path: '/got-role',
+        name: 'got-role',
+        icon: 'shop',
+        routes: [
+          {
+            path: '/got-role/list',
+            name: 'list',
+            component: './GOTRole/RoleList',
+          },
+          {
+            path: '/got-role/new',
+            name: 'new',
+            hideInMenu: true,
+            component: './GOTRole/RoleForm',
+          },
+          {
+            path: '/got-role/:id',
+            name: 'edit',
+            hideInMenu: true,
+            component: './GOTRole/RoleForm',
+          },
+        ],
+      },
+      {
+        path: '/got-group',
+        name: 'got-group',
+        icon: 'shopping',
+        routes: [
+          {
+            path: '/got-group/list',
+            name: 'list',
+            component: './GOTGroup/GroupList',
+          },
+          {
+            path: '/got-group/new',
+            name: 'new',
+            hideInMenu: true,
+            component: './GOTGroup/GroupForm',
+          },
+          {
+            path: '/got-group/:id',
+            name: 'edit',
+            hideInMenu: true,
+            component: './GOTGroup/GroupForm',
+          },
+        ],
+      },
+      {
+        path: '/got-user',
+        name: 'got-user',
+        icon: 'rocket',
+        routes: [
+          {
+            path: '/got-user/list',
+            name: 'list',
+            component: './GOTUser/UserList',
+          },
+          {
+            path: '/got-user/new',
+            name: 'new',
+            hideInMenu: true,
+            component: './GOTUser/UserForm',
+          },
+          {
+            path: '/got-user/:id',
+            name: 'edit',
+            hideInMenu: true,
+            component: './GOTUser/UserForm',
           },
         ],
       },

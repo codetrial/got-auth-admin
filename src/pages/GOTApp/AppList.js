@@ -11,9 +11,9 @@ import { formatFormValues, serializeSearchParam } from '@/utils/search';
 
 const FormItem = Form.Item;
 
-@connect(({ app, loading }) => ({
-  app,
-  loading: loading.models.app,
+@connect(({ gotApp, loading }) => ({
+  app: gotApp,
+  loading: loading.models.gotApp,
 }))
 @Form.create()
 class AppList extends PureComponent {
@@ -40,7 +40,7 @@ class AppList extends PureComponent {
       title: '操作',
       render: (text, row) => (
         <Fragment>
-          <Link to={`/app/${row.id}`}>修改</Link>
+          <Link to={`/got-app/${row.id}`}>修改</Link>
           <Divider type="vertical" />
           <a onClick={() => this.handleDeleteApp(true, row)}>删除</a>
         </Fragment>
@@ -52,7 +52,7 @@ class AppList extends PureComponent {
     const { dispatch } = this.props;
 
     dispatch({
-      type: 'app/search',
+      type: 'gotApp/search',
     });
   }
 
@@ -60,7 +60,7 @@ class AppList extends PureComponent {
     const { dispatch } = this.props;
 
     dispatch({
-      type: 'app/delete',
+      type: 'gotApp/delete',
     });
   }
 
@@ -77,7 +77,7 @@ class AppList extends PureComponent {
     const params = serializeSearchParam(pagination, formValues, filters, sorter);
 
     dispatch({
-      type: 'app/search',
+      type: 'gotApp/search',
       payload: params,
     });
   }
@@ -89,7 +89,7 @@ class AppList extends PureComponent {
       formValues: {},
     });
     dispatch({
-      type: 'app/search',
+      type: 'gotApp/search',
       payload: {},
     });
   }
@@ -107,7 +107,7 @@ class AppList extends PureComponent {
       });
 
       dispatch({
-        type: 'app/search',
+        type: 'gotApp/search',
         payload: {
           filter: JSON.stringify(values),
         },
@@ -160,7 +160,7 @@ class AppList extends PureComponent {
             form={this.renderQueryForm()}
             leftOperators={
               <Fragment>
-                <Link to="/app/new">
+                <Link to="/got-app/new">
                   <Button icon="plus" type="primary">
                     新建
                   </Button>
