@@ -1,7 +1,7 @@
 import React, { PureComponent, Fragment } from 'react';
 import Link from 'umi/link';
 import { connect } from 'dva';
-import { Card, Form, Input, Button, Row, Col, Divider } from 'antd';
+import { Card, Form, Input, Button, Row, Col, Divider, Modal, Tooltip } from 'antd';
 import StandardTable from '@/components/StandardTable';
 import StandardQueryList from '@/components/StandardQueryList';
 import PageHeaderWrapper from '@/components/PageHeaderWrapper';
@@ -67,8 +67,16 @@ class ResourceList extends PureComponent {
   handleDeleteResource() {
     const { dispatch } = this.props;
 
-    dispatch({
-      type: 'gotResource/delete',
+    Modal.confirm({
+      title: '删除',
+      content: '确定删除吗？（暂不生效）',
+      okText: '确认',
+      cancelText: '取消',
+      onOk: () => {
+        dispatch({
+          type: 'gotResource/delete',
+        });
+      },
     });
   }
 
@@ -175,7 +183,9 @@ class ResourceList extends PureComponent {
                 </Link>
                 {selectedRows.length > 0 && (
                   <span>
-                    <Button>批量删除</Button>
+                    <Tooltip placement="topLeft" title="暂不支持">
+                      <Button>批量删除</Button>
+                    </Tooltip>
                   </span>
                 )}
               </Fragment>
