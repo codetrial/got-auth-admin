@@ -18,16 +18,16 @@ export default [
     authority: ['admin', 'user'],
     routes: [
       // dashboard
-      { path: '/', redirect: '/dashboard/analysis' },
+      { path: '/', redirect: '/dashboard/workspace' },
       {
         path: '/dashboard',
         name: 'dashboard',
         icon: 'dashboard',
         routes: [
           {
-            path: '/dashboard/analysis',
-            name: 'analysis',
-            component: './Dashboard/Analysis',
+            path: '/dashboard/workspace',
+            name: 'workspace',
+            component: './Dashboard/Workspace',
           },
         ],
       },
