@@ -5,6 +5,7 @@ export default {
   'layout.user.link.privacy': '隐私',
   'layout.user.link.terms': '条款',
 
+  'validation.userName.required': '请输入用户名!',
   'validation.email.required': '请输入邮箱地址！',
   'validation.email.wrong-format': '邮箱地址格式错误！',
   'validation.password.required': '请输入密码！',

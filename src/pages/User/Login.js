@@ -81,10 +81,25 @@ class LoginPage extends Component {
               login.type === 'account' &&
               !submitting &&
               this.renderMessage(formatMessage({ id: 'app.login.message-invalid-credentials' }))}
-            <UserName name="userName" placeholder="admin/user" />
+            <UserName
+              name="userName"
+              placeholder="admin/user"
+              rules={[
+                {
+                  required: true,
+                  message: formatMessage({ id: 'validation.userName.required' }),
+                },
+              ]}
+            />
             <Password
               name="password"
               placeholder="888888/123456"
+              rules={[
+                {
+                  required: true,
+                  message: formatMessage({ id: 'validation.password.required' }),
+                },
+              ]}
               onPressEnter={() => this.loginForm.validateFields(this.handleSubmit)}
             />
           </Tab>
@@ -92,7 +107,7 @@ class LoginPage extends Component {
             <Checkbox checked={autoLogin} onChange={this.changeAutoLogin}>
               <FormattedMessage id="app.login.remember-me" />
             </Checkbox>
-            <Link style={{ float: 'right' }} className={styles.register} to="/User/Register">
+            <Link style={{ float: 'right' }} className={styles.register} to="/user/register">
               <FormattedMessage id="app.login.signup" />
             </Link>
           </div>
