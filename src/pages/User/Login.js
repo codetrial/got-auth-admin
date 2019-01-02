@@ -93,7 +93,7 @@ class LoginPage extends Component {
             />
             <Password
               name="password"
-              placeholder="888888/123456"
+              placeholder="codetrial"
               rules={[
                 {
                   required: true,

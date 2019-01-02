@@ -40,7 +40,7 @@ const checkStatus = response => {
 
 const checkJSONStatus = response => {
   if (response && response.status) {
-    const { status, message } = response;
+    const { status, message = 'Error' } = response;
     if (isNotOK(status)) {
       throw new Error(`Exception: ${status} ${message}`);
     }

@@ -1,5 +1,5 @@
 const STATUS = {
-  OK: ['200', 'OK'],
+  OK: ['200', 'OK', 'ok'],
 };
 
 export function isOK(status) {
