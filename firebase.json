@@ -1,0 +1,20 @@
+{
+  "hosting": {
+    "public": "dist",
+    "redirects": [
+      {
+        "source": "/got-api/:path*",
+        "destination": "https://gotauth-api.felixpy.com/api/:path*",
+        "type": 301
+      }
+    ],
+    "rewrites": [
+      { "source": "/api/**", "function": "api" },
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ],
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"]
+  }
+}

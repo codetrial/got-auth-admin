@@ -100,10 +100,10 @@ export default {
 
   chainWebpack: webpackPlugin,
   proxy: {
-    '/api': {
+    '/got-api': {
       target: 'http://localhost:7001/api/',
       changeOrigin: true,
-      pathRewrite: { '^/api': '' },
+      pathRewrite: { '^/got-api': '' },
     },
   },
   cssnano: {
