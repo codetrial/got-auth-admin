@@ -3,7 +3,7 @@
 [![License](https://img.shields.io/github/license/codetrial/got-auth-admin.svg)](https://github.com/codetrial/got-auth-admin)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://github.com/codetrial/got-auth-admin)
 
-Management system for the [Got Auth Service](https://github.com/codetrial/got-auth-service).
+Web application for the [GOT Auth Service](https://github.com/codetrial/got-auth-service).
 
 English | [简体中文](./README.zh-CN.md)
 

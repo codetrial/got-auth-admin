@@ -3,7 +3,7 @@
 [![License](https://img.shields.io/github/license/codetrial/got-auth-admin.svg)](https://github.com/codetrial/got-auth-admin)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://github.com/codetrial/got-auth-admin)
 
-专门为 [Got Auth Service](https://github.com/codetrial/got-auth-service) 打造的管理系统。
+专门为 [GOT Auth Service](https://github.com/codetrial/got-auth-service) 打造的 Web 应用。
 
 简体中文 | [English](./README.md)
 
